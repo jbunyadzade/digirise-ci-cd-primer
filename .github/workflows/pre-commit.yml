@@ -1,17 +1,21 @@
 name: pre-commit
 
+concurrency:
+    group: ${{ github.ref }}
+    cancel-in-progress: true
+
 on:
-  pull_request:
-    branches:
-      - '**'
-  push:
-    branches:
-      - '**'
+    pull_request:
+        branches:
+            - "**"
+    push:
+        branches:
+            - "**"
 
 jobs:
-  pre-commit:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v3
-    - uses: pre-commit/action@v3.0.1
+    pre-commit:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/setup-python@v3
+            - uses: pre-commit/action@v3.0.1
